@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Bookmark;
 use AppBundle\Entity\Comment;
+use AppBundle\Voter\CommentVoter;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -60,7 +61,7 @@ class CommentsController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         try {
-            $this->denyAccessUnlessGranted('edit', $comment);
+            $this->denyAccessUnlessGranted(CommentVoter::EDIT, $comment);
 
             $comment->setText($request->get('text'));
 
@@ -100,7 +101,7 @@ class CommentsController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         try {
-            $this->denyAccessUnlessGranted('delete', $comment);
+            $this->denyAccessUnlessGranted(CommentVoter::DELETE, $comment);
 
             $em->remove($comment);
             $em->flush();
