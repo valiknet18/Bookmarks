@@ -44,7 +44,7 @@ class CommentsController extends FOSRestController
 
         return $this->view([
             'comment' => $comment,
-        ]);
+        ], 201);
     }
 
     /**
