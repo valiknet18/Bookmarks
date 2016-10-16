@@ -1,0 +1,8 @@
+bookmarks:
+    type: rest
+    resource: AppBundle\Controller\BookmarksController
+
+comments:
+    type: rest
+    parent: bookmarks
+    resource: AppBundle\Controller\CommentsController

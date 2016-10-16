@@ -1,0 +1,8 @@
+services:
+    app.comment_voter:
+        class: AppBundle\Voter\CommentVoter
+        tags:
+            - { name: security.voter }
+        calls:
+            - [setRequest, ['@request_stack']]
+        public: false
